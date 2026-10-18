@@ -1,0 +1,335 @@
+import { ToolItem } from '../types';
+
+export const TOOLS: ToolItem[] = [
+  // --- PHASE 1 CORE 12 TOOLS (Available) ---
+  {
+    id: 'percentage-calculator',
+    name: 'Percentage Calculator',
+    shortDescription: 'Calculate percentage of values, proportion ratios, and percentage increase or decrease.',
+    category: 'math',
+    categoryName: 'Math & Calculators',
+    subCategory: 'percentages-pricing',
+    iconName: 'Percent',
+    tags: ['math', 'percent', 'proportion', 'change', 'increase', 'decrease'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'molarity-calculator',
+    name: 'Molarity Calculator',
+    shortDescription: 'Calculate molarity, required solute mass, or solution volume using M = m / (MW × V).',
+    category: 'chemistry',
+    categoryName: 'Chemistry & Science',
+    subCategory: 'solutions',
+    iconName: 'FlaskConical',
+    tags: ['chemistry', 'molarity', 'moles', 'molecular weight', 'solution', 'concentration'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'dilution-calculator',
+    name: 'Dilution Calculator (C1V1 = C2V2)',
+    shortDescription: 'Compute initial or final concentrations and volumes for stock and working solution dilutions.',
+    category: 'chemistry',
+    categoryName: 'Chemistry & Science',
+    subCategory: 'stoichiometry',
+    iconName: 'Pipette',
+    tags: ['dilution', 'chemistry', 'c1v1', 'stock solution', 'buffer', 'concentration'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'mass-concentration-calculator',
+    name: 'Mass Concentration Calculator',
+    shortDescription: 'Convert and calculate concentrations across g/L, mg/mL, µg/mL, ppm, and ppb.',
+    category: 'chemistry',
+    categoryName: 'Chemistry & Science',
+    subCategory: 'solutions',
+    iconName: 'Scale',
+    tags: ['chemistry', 'concentration', 'ppm', 'ppb', 'mg/ml', 'mass volume'],
+    isPopular: false,
+    status: 'available'
+  },
+  {
+    id: 'unit-converter',
+    name: 'Universal Unit Converter',
+    shortDescription: 'Instantly convert across length, mass, temperature, volume, area, speed, and pressure.',
+    category: 'daily',
+    categoryName: 'Daily Life & Living',
+    subCategory: 'unit-conversions',
+    iconName: 'ArrowRightLeft',
+    tags: ['conversion', 'metric', 'imperial', 'length', 'weight', 'temperature', 'volume'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'date-difference-calculator',
+    name: 'Date Difference Calculator',
+    shortDescription: 'Calculate exact years, months, days, total weeks, and business days between any two dates.',
+    category: 'education',
+    categoryName: 'Education & Time',
+    subCategory: 'date-calculations',
+    iconName: 'CalendarRange',
+    tags: ['calendar', 'date', 'duration', 'days', 'time', 'difference'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'stopwatch',
+    name: 'Digital Precision Stopwatch',
+    shortDescription: 'Millisecond-accurate stopwatch with lap recording, split times, and keyboard controls.',
+    category: 'education',
+    categoryName: 'Education & Time',
+    subCategory: 'stopwatch-timers',
+    iconName: 'Timer',
+    tags: ['stopwatch', 'timer', 'laps', 'split', 'time', 'chronometer'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'word-character-counter',
+    name: 'Word & Character Counter',
+    shortDescription: 'Live word, character, sentence, line counts with estimated reading and speaking times.',
+    category: 'text',
+    categoryName: 'Text & Documents',
+    subCategory: 'text-analytics',
+    iconName: 'AlignLeft',
+    tags: ['words', 'characters', 'counter', 'reading time', 'text stats', 'editor'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'json-formatter',
+    name: 'JSON Formatter & Validator',
+    shortDescription: 'Format, beautify, minify, and validate JSON data with clear syntax error detection.',
+    category: 'developer',
+    categoryName: 'Developer Tools',
+    subCategory: 'json-data',
+    iconName: 'Braces',
+    tags: ['json', 'formatter', 'validator', 'minify', 'pretty print', 'developer'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'discount-calculator',
+    name: 'Discount & Sales Tax Calculator',
+    shortDescription: 'Calculate discounted price, coupon savings, and final total including sales tax.',
+    category: 'math',
+    categoryName: 'Math & Calculators',
+    subCategory: 'discounts-taxes',
+    iconName: 'Tag',
+    tags: ['discount', 'sale', 'shopping', 'tax', 'savings', 'retail'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'age-calculator',
+    name: 'Exact Age & Milestone Calculator',
+    shortDescription: 'Find your precise age down to days, weekday of birth, next birthday, and life milestones.',
+    category: 'education',
+    categoryName: 'Education & Time',
+    subCategory: 'age-milestones',
+    iconName: 'Cake',
+    tags: ['age', 'birthday', 'milestone', 'days lived', 'date of birth'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'image-compressor',
+    name: 'Private In-Browser Image Compressor',
+    shortDescription: 'Compress and resize JPEG, PNG, and WebP images locally with zero server uploads.',
+    category: 'image',
+    categoryName: 'Image & Media',
+    subCategory: 'compression',
+    iconName: 'ImageDown',
+    tags: ['image', 'compress', 'resize', 'jpeg', 'png', 'webp', 'privacy'],
+    isPopular: true,
+    status: 'available'
+  },
+
+  // --- BONUS COMPLETED TOOLS (Available in Phase 1) ---
+  {
+    id: 'rsd-calculator',
+    name: 'Mean, SD & %RSD Calculator',
+    shortDescription: 'Compute arithmetic mean, sample/population standard deviation, and Relative Standard Deviation (%RSD) for analytical data.',
+    category: 'laboratory',
+    categoryName: 'Laboratory & QC',
+    subCategory: 'qc-statistics',
+    iconName: 'Sigma',
+    tags: ['pharma', 'rsd', 'standard deviation', 'qc', 'analytical', 'statistics'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'ph-calculator',
+    name: 'pH Calculator (Strong Acid / Base)',
+    shortDescription: 'Determine pH, pOH, [H+], and [OH-] for dilute strong monoprotic/diprotic acids and bases at 25°C.',
+    category: 'chemistry',
+    categoryName: 'Chemistry & Science',
+    subCategory: 'equilibrium',
+    iconName: 'Droplets',
+    tags: ['ph', 'poh', 'acid', 'base', 'chemistry', 'hydrogen ion'],
+    isPopular: false,
+    status: 'available'
+  },
+  {
+    id: 'base64-tool',
+    name: 'Base64 Encoder & Decoder',
+    shortDescription: 'Convert plain text to standard Base64 encoding or decode Base64 back to readable text.',
+    category: 'developer',
+    categoryName: 'Developer Tools',
+    subCategory: 'encoding-crypto',
+    iconName: 'Binary',
+    tags: ['base64', 'encode', 'decode', 'developer', 'ascii', 'utf8'],
+    isPopular: false,
+    status: 'available'
+  },
+  {
+    id: 'password-generator',
+    name: 'Secure Password & UUID Generator',
+    shortDescription: 'Generate cryptographically strong random passwords and UUID v4 tokens directly in your browser.',
+    category: 'developer',
+    categoryName: 'Developer Tools',
+    subCategory: 'encoding-crypto',
+    iconName: 'KeyRound',
+    tags: ['security', 'password', 'uuid', 'random', 'crypto', 'token'],
+    isPopular: false,
+    status: 'available'
+  },
+  {
+    id: 'text-case-converter',
+    name: 'Text Case Converter',
+    shortDescription: 'Instantly transform text to UPPERCASE, lowercase, Title Case, camelCase, snake_case, and kebab-case.',
+    category: 'text',
+    categoryName: 'Text & Documents',
+    subCategory: 'case-transform',
+    iconName: 'Type',
+    tags: ['case', 'uppercase', 'lowercase', 'title case', 'camelcase', 'slug'],
+    isPopular: false,
+    status: 'available'
+  },
+  {
+    id: 'tip-calculator',
+    name: 'Tip & Bill Splitter',
+    shortDescription: 'Calculate tip amounts, total bill with tax, and split payments fairly across any number of people.',
+    category: 'daily',
+    categoryName: 'Daily Life & Living',
+    subCategory: 'dining-bills',
+    iconName: 'Receipt',
+    tags: ['tip', 'split bill', 'restaurant', 'dining', 'calculator'],
+    isPopular: false,
+    status: 'available'
+  },
+  {
+    id: 'dissolution-calculator',
+    name: 'Dissolution % Release Calculator',
+    shortDescription: 'Calculate drug release percentages across dissolution timepoints with volume replacement correction.',
+    category: 'laboratory',
+    categoryName: 'Laboratory & QC',
+    subCategory: 'dissolution',
+    iconName: 'TestTubes',
+    tags: ['dissolution', 'pharma', 'drug release', 'qc', 'usp'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'compound-interest',
+    name: 'Compound Interest & Growth',
+    shortDescription: 'Calculate compound interest schedules, annual returns, and savings projection tables.',
+    category: 'math',
+    categoryName: 'Math & Calculators',
+    subCategory: 'interest-finance',
+    iconName: 'TrendingUp',
+    tags: ['finance', 'interest', 'compound', 'savings', 'growth'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'bmi-calculator',
+    name: 'BMI & Body Composition Helper',
+    shortDescription: 'Body Mass Index calculator with metric and imperial units, accompanied by standard WHO health references.',
+    category: 'daily',
+    categoryName: 'Daily Life & Living',
+    subCategory: 'health-lifestyle',
+    iconName: 'HeartPulse',
+    tags: ['bmi', 'health', 'fitness', 'weight', 'height'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'qr-code-generator',
+    name: 'In-Browser QR Code Generator',
+    shortDescription: 'Generate customized vector QR codes for websites, WiFi, vCards, and emails with zero server tracking.',
+    category: 'developer',
+    categoryName: 'Developer Tools',
+    subCategory: 'encoding-crypto',
+    iconName: 'QrCode',
+    tags: ['qr', 'qrcode', 'barcode', 'generator', 'wifi', 'vcard', 'developer'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'assay-calculator',
+    name: 'Assay % Potency Calculator',
+    shortDescription: 'Finished product pharmaceutical HPLC and UV-Vis assay calculation with LOD/moisture correction.',
+    category: 'laboratory',
+    categoryName: 'Laboratory & QC',
+    subCategory: 'dissolution',
+    iconName: 'Microscope',
+    tags: ['assay', 'potency', 'pharma', 'hplc', 'qc', 'analytical', 'tablet'],
+    isPopular: true,
+    status: 'available'
+  },
+
+  // --- PHASE 3 COMPLETED TOOLS (Available) ---
+  {
+    id: 'pdf-merge',
+    name: 'PDF Merge & Combine',
+    shortDescription: 'In-browser PDF page combiner. Client-side assembly with reordering and zero file uploads.',
+    category: 'text',
+    categoryName: 'Text & Documents',
+    subCategory: 'pdf-tools',
+    iconName: 'FileStack',
+    tags: ['pdf', 'merge', 'document', 'combine', 'pages'],
+    isPopular: true,
+    status: 'available'
+  },
+  {
+    id: 'pdf-split',
+    name: 'PDF Split & Extract',
+    shortDescription: 'Extract specific pages, page ranges, or groups from PDF files locally and privately.',
+    category: 'text',
+    categoryName: 'Text & Documents',
+    subCategory: 'pdf-tools',
+    iconName: 'Split',
+    tags: ['pdf', 'split', 'extract', 'pages', 'slice'],
+    isPopular: true,
+    status: 'available'
+  },
+
+  // --- PHASE 4 ROADMAP TOOLS (Planned Future Releases) ---
+  {
+    id: 'spectrophotometry-calculator',
+    name: 'Spectrophotometry & Beer-Lambert',
+    shortDescription: 'Analytical absorbance, molar absorptivity, and path length calculations for UV-Vis spectroscopy.',
+    category: 'laboratory',
+    categoryName: 'Laboratory & QC',
+    subCategory: 'qc-statistics',
+    iconName: 'Pipette',
+    tags: ['spectrophotometry', 'beer lambert', 'absorbance', 'uv-vis', 'laboratory'],
+    status: 'planned',
+    badgeNote: 'Phase 4 Roadmap'
+  },
+  {
+    id: 'compound-purity-calculator',
+    name: 'Compound Purity & Yield',
+    shortDescription: 'Calculate theoretical yield, actual yield, and chemical purity percentage.',
+    category: 'chemistry',
+    categoryName: 'Chemistry & Science',
+    subCategory: 'stoichiometry',
+    iconName: 'FlaskConical',
+    tags: ['chemistry', 'yield', 'purity', 'synthesis', 'stoichiometry'],
+    status: 'planned',
+    badgeNote: 'Phase 4 Roadmap'
+  }
+];

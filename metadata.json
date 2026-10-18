@@ -1,0 +1,6 @@
+{
+  "name": "ToolNest - All-in-One Online Tools",
+  "description": "Every tool. One place. Fast, free, browser-based scientific, laboratory, everyday math, developer, and media tools.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
