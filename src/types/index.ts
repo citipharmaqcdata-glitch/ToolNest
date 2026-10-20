@@ -1,5 +1,6 @@
 export type CategoryId =
   | 'all'
+  | 'conversions'
   | 'chemistry'
   | 'laboratory'
   | 'math'
@@ -23,7 +24,9 @@ export interface ToolItem {
   shortDescription: string;
   category: CategoryId;
   categoryName: string;
+  secondaryCategories?: CategoryId[];
   subCategory?: string;
+  subCategories?: string[];
   iconName: string;
   tags: string[];
   isPopular?: boolean;

@@ -286,11 +286,18 @@ export const CATEGORIES: Record<CategoryKey, CategoryConfig> = {
   }
 };
 
-export default function UnitConverter() {
-  const [selectedCategoryKey, setSelectedCategoryKey] = useState<CategoryKey>('length');
+interface UnitConverterProps {
+  initialCategory?: string;
+}
+
+export default function UnitConverter({ initialCategory }: UnitConverterProps = {}) {
+  const validInitial: CategoryKey = (initialCategory && initialCategory in CATEGORIES)
+    ? (initialCategory as CategoryKey)
+    : 'length';
+  const [selectedCategoryKey, setSelectedCategoryKey] = useState<CategoryKey>(validInitial);
   const [inputValue, setInputValue] = useState<string>('1');
-  const [fromUnitId, setFromUnitId] = useState<string>('m');
-  const [toUnitId, setToUnitId] = useState<string>('ft');
+  const [fromUnitId, setFromUnitId] = useState<string>(CATEGORIES[validInitial].defaultFrom);
+  const [toUnitId, setToUnitId] = useState<string>(CATEGORIES[validInitial].defaultTo);
   const [decimals, setDecimals] = useState<number>(4);
   const [copiedKey, setCopiedKey] = useState<string | null>(null);
   const [tableSearch, setTableSearch] = useState<string>('');

@@ -48,6 +48,29 @@ import AssayCalculator from './tools/laboratory/AssayCalculator';
 import PdfMergeTool from './tools/text/PdfMergeTool';
 import PdfSplitTool from './tools/text/PdfSplitTool';
 
+// Phase 4 Tools
+import SpectrophotometryCalculator from './tools/laboratory/SpectrophotometryCalculator';
+import CompoundPurityYieldCalculator from './tools/chemistry/CompoundPurityYieldCalculator';
+
+// Phase 5 Tools
+import BufferCalculator from './tools/chemistry/BufferCalculator';
+import HplcResolutionCalculator from './tools/laboratory/HplcResolutionCalculator';
+
+// PDF & Document Converters & Editors
+import PdfConverterHub from './tools/pdf/PdfConverterHub';
+import JpgToPdfTool from './tools/pdf/JpgToPdfTool';
+import PdfToJpgTool from './tools/pdf/PdfToJpgTool';
+import OfficeToPdfTool from './tools/pdf/OfficeToPdfTool';
+import PdfToOfficeTool from './tools/pdf/PdfToOfficeTool';
+import PdfToPptTool from './tools/pdf/PdfToPptTool';
+import PdfRotateTool from './tools/pdf/PdfRotateTool';
+import PdfPageNumberTool from './tools/pdf/PdfPageNumberTool';
+import PdfWatermarkTool from './tools/pdf/PdfWatermarkTool';
+import PdfCropTool from './tools/pdf/PdfCropTool';
+import PdfRedactTool from './tools/pdf/PdfRedactTool';
+import PdfProtectTool from './tools/pdf/PdfProtectTool';
+import PdfCompareTool from './tools/pdf/PdfCompareTool';
+
 import { Sparkles, ShieldCheck, Zap, Star, ArrowRight, Layers } from 'lucide-react';
 
 export default function App() {
@@ -133,12 +156,14 @@ export default function App() {
       return false;
     }
     // Category filter
-    if (selectedCategory !== 'all' && tool.category !== selectedCategory) {
-      return false;
+    if (selectedCategory !== 'all') {
+      const matchCat = tool.category === selectedCategory || tool.secondaryCategories?.includes(selectedCategory);
+      if (!matchCat) return false;
     }
     // Subcategory filter
-    if (selectedSubCategory !== 'all' && tool.subCategory !== selectedSubCategory) {
-      return false;
+    if (selectedSubCategory !== 'all') {
+      const matchSub = tool.subCategory === selectedSubCategory || tool.subCategories?.includes(selectedSubCategory);
+      if (!matchSub) return false;
     }
     // Search query filter
     if (searchQuery.trim()) {
@@ -171,7 +196,7 @@ export default function App() {
       case 'mass-concentration-calculator':
         return <MassConcentrationCalculator />;
       case 'unit-converter':
-        return <UnitConverter />;
+        return <UnitConverter initialCategory={selectedSubCategory !== 'all' ? selectedSubCategory : undefined} />;
       case 'date-difference-calculator':
         return <DateDifferenceCalculator />;
       case 'stopwatch':
@@ -212,6 +237,50 @@ export default function App() {
         return <PdfMergeTool />;
       case 'pdf-split':
         return <PdfSplitTool />;
+      case 'spectrophotometry-calculator':
+        return <SpectrophotometryCalculator />;
+      case 'compound-purity-calculator':
+        return <CompoundPurityYieldCalculator />;
+      case 'buffer-calculator':
+        return <BufferCalculator />;
+      case 'hplc-resolution-calculator':
+        return <HplcResolutionCalculator />;
+      case 'pdf-converter-hub':
+        return <PdfConverterHub />;
+      case 'jpg-to-pdf':
+        return <JpgToPdfTool />;
+      case 'pdf-to-jpg':
+        return <PdfToJpgTool />;
+      case 'word-to-pdf':
+        return <OfficeToPdfTool initialMode="word" />;
+      case 'excel-to-pdf':
+        return <OfficeToPdfTool initialMode="excel" />;
+      case 'html-to-pdf':
+        return <OfficeToPdfTool initialMode="html" />;
+      case 'pdf-to-word':
+        return <PdfToOfficeTool initialMode="word" />;
+      case 'pdf-to-excel':
+        return <PdfToOfficeTool initialMode="excel" />;
+      case 'pdf-to-pdfa':
+        return <PdfToOfficeTool initialMode="pdfa" />;
+      case 'pdf-to-ppt':
+        return <PdfToPptTool />;
+      case 'pdf-rotate':
+        return <PdfRotateTool />;
+      case 'pdf-page-numbers':
+        return <PdfPageNumberTool />;
+      case 'pdf-watermark':
+        return <PdfWatermarkTool />;
+      case 'pdf-crop':
+        return <PdfCropTool />;
+      case 'pdf-redact':
+        return <PdfRedactTool />;
+      case 'pdf-protect':
+        return <PdfProtectTool initialMode="protect" />;
+      case 'pdf-unlock':
+        return <PdfProtectTool initialMode="unlock" />;
+      case 'pdf-compare':
+        return <PdfCompareTool />;
       default:
         return (
           <div className="p-8 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800">
