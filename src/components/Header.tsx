@@ -63,6 +63,14 @@ export default function Header({
               All Tools
             </button>
             <button
+              onClick={() => handleNavClick('archive')}
+              className={`hover:text-teal-600 dark:hover:text-teal-400 transition-colors whitespace-nowrap shrink-0 ${
+                currentCategory === 'archive' && !activeToolId ? 'text-teal-600 dark:text-teal-400 font-semibold' : ''
+              }`}
+            >
+              Archive Converters
+            </button>
+            <button
               onClick={() => handleNavClick('conversions')}
               className={`hover:text-teal-600 dark:hover:text-teal-400 transition-colors whitespace-nowrap shrink-0 ${
                 currentCategory === 'conversions' && !activeToolId ? 'text-teal-600 dark:text-teal-400 font-semibold' : ''
@@ -101,6 +109,18 @@ export default function Header({
               }`}
             >
               Developer
+            </button>
+            <button
+              onClick={() => onOpenModal('about')}
+              className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors whitespace-nowrap shrink-0"
+            >
+              About
+            </button>
+            <button
+              onClick={() => onOpenModal('contact')}
+              className="hover:text-teal-600 dark:hover:text-teal-400 transition-colors whitespace-nowrap shrink-0"
+            >
+              Contact
             </button>
           </nav>
 
@@ -150,6 +170,12 @@ export default function Header({
               className="py-2 px-3 text-left rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
               All Tools
+            </button>
+            <button
+              onClick={() => handleNavClick('archive')}
+              className="py-2 px-3 text-left rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-teal-600 dark:text-teal-400"
+            >
+              Archive Converters (ZIP, 7Z, TAR...)
             </button>
             <button
               onClick={() => handleNavClick('chemistry')}
@@ -204,6 +230,24 @@ export default function Header({
               className="py-2 px-3 text-left rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
               Daily Living
+            </button>
+            <button
+              onClick={() => {
+                onOpenModal('about');
+                setMobileMenuOpen(false);
+              }}
+              className="py-2 px-3 text-left rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+            >
+              About ToolNest
+            </button>
+            <button
+              onClick={() => {
+                onOpenModal('contact');
+                setMobileMenuOpen(false);
+              }}
+              className="py-2 px-3 text-left rounded-lg font-medium text-teal-600 dark:text-teal-400 hover:bg-slate-100 dark:hover:bg-slate-800"
+            >
+              Contact Us
             </button>
           </div>
 

@@ -2,6 +2,7 @@ import { ReactNode, useState } from 'react';
 import { ArrowLeft, Star, Share2, Check, ExternalLink } from 'lucide-react';
 import { ToolItem } from '../types';
 import { copyToClipboard } from '../utils/formatters';
+import ToolEducationalGuide from './ToolEducationalGuide';
 
 interface ToolLayoutProps {
   tool: ToolItem;
@@ -94,6 +95,9 @@ export default function ToolLayout({
       <div className="min-h-[300px]">
         {children}
       </div>
+
+      {/* Complete Working Principle & Educational Guide (AdSense & SEO Optimized) */}
+      <ToolEducationalGuide toolId={tool.id} tool={tool} />
 
       {/* Related Tools Carousel / Grid */}
       {relatedTools.length > 0 && (

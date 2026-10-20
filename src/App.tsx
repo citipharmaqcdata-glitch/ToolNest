@@ -71,6 +71,10 @@ import PdfRedactTool from './tools/pdf/PdfRedactTool';
 import PdfProtectTool from './tools/pdf/PdfProtectTool';
 import PdfCompareTool from './tools/pdf/PdfCompareTool';
 
+// Archive & Compression Tools (25 Formats)
+import ArchiveConverterTool from './tools/archive/ArchiveConverterTool';
+import { ARCHIVE_TOOLS_CONFIG } from './data/archiveToolsData';
+
 import { Sparkles, ShieldCheck, Zap, Star, ArrowRight, Layers } from 'lucide-react';
 
 export default function App() {
@@ -93,22 +97,40 @@ export default function App() {
 
     setFavorites(getFavorites());
 
-    // Always clear leftover URL hash so preview opens directly on Home page
-    if (window.location.hash) {
-      try {
-        window.history.replaceState(null, '', window.location.pathname + window.location.search);
-      } catch {
-        window.location.hash = '';
+    // Check if initial URL matches /tools/:id or hash
+    const initialPath = window.location.pathname;
+    const match = initialPath.match(/^\/tools\/([^/]+)/);
+    if (match && match[1]) {
+      const toolExists = TOOLS.find(t => t.id === match[1]);
+      if (toolExists) {
+        setActiveToolId(toolExists.id);
+      }
+    } else if (window.location.hash) {
+      const hashId = window.location.hash.replace(/^#/, '');
+      const toolExists = TOOLS.find(t => t.id === hashId);
+      if (toolExists) {
+        setActiveToolId(toolExists.id);
+      } else {
+        try {
+          window.history.replaceState(null, '', '/');
+        } catch {
+          window.location.hash = '';
+        }
       }
     }
-    setActiveToolId(null);
 
     // Support browser / mobile back button navigation
     const handlePopState = (event: PopStateEvent) => {
       if (event.state && event.state.toolId) {
         setActiveToolId(event.state.toolId);
       } else {
-        setActiveToolId(null);
+        const currentPath = window.location.pathname;
+        const pathMatch = currentPath.match(/^\/tools\/([^/]+)/);
+        if (pathMatch && pathMatch[1]) {
+          setActiveToolId(pathMatch[1]);
+        } else {
+          setActiveToolId(null);
+        }
       }
     };
     window.addEventListener('popstate', handlePopState);
@@ -132,7 +154,7 @@ export default function App() {
   const handleOpenTool = (tool: ToolItem) => {
     setActiveToolId(tool.id);
     try {
-      window.history.pushState({ toolId: tool.id }, '', window.location.pathname + window.location.search);
+      window.history.pushState({ toolId: tool.id }, '', `/tools/${tool.id}`);
     } catch {
       // ignore
     }
@@ -142,7 +164,7 @@ export default function App() {
   const handleBackToHome = () => {
     setActiveToolId(null);
     try {
-      window.history.replaceState(null, '', window.location.pathname + window.location.search);
+      window.history.pushState(null, '', '/');
     } catch {
       window.location.hash = '';
     }
@@ -282,6 +304,9 @@ export default function App() {
       case 'pdf-compare':
         return <PdfCompareTool />;
       default:
+        if (ARCHIVE_TOOLS_CONFIG[id]) {
+          return <ArchiveConverterTool config={ARCHIVE_TOOLS_CONFIG[id]} />;
+        }
         return (
           <div className="p-8 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800">
             <h3 className="font-heading font-semibold text-slate-800 dark:text-white text-lg">

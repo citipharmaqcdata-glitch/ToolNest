@@ -38,6 +38,14 @@ import {
   Lock,
   Unlock,
   FileDiff,
+  FolderArchive,
+  FileArchive,
+  Layers,
+  Zap,
+  Box,
+  HardDrive,
+  Package,
+  Disc,
   Star,
   HelpCircle
 } from 'lucide-react';
@@ -80,11 +88,20 @@ const ICON_MAP: Record<string, any> = {
   Eraser,
   Lock,
   Unlock,
-  FileDiff
+  FileDiff,
+  FolderArchive,
+  FileArchive,
+  Layers,
+  Zap,
+  Box,
+  HardDrive,
+  Package,
+  Disc
 };
 
 // Subtle domain-specific icon color themes for visual scannability
 const CATEGORY_STYLES: Record<string, string> = {
+  archive: 'bg-teal-50 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 border border-teal-100 dark:border-teal-900/40',
   conversions: 'bg-teal-50 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 border border-teal-100 dark:border-teal-900/40',
   chemistry: 'bg-teal-50 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 border border-teal-100 dark:border-teal-900/40',
   laboratory: 'bg-cyan-50 dark:bg-cyan-950/40 text-cyan-600 dark:text-cyan-400 border border-cyan-100 dark:border-cyan-900/40',
