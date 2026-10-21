@@ -75,6 +75,10 @@ import PdfCompareTool from './tools/pdf/PdfCompareTool';
 import ArchiveConverterTool from './tools/archive/ArchiveConverterTool';
 import { ARCHIVE_TOOLS_CONFIG } from './data/archiveToolsData';
 
+// Document Converters (44 Formats)
+import DocumentConverterTool from './tools/documents/DocumentConverterTool';
+import { DOCUMENT_TOOLS_CONFIG } from './data/documentToolsData';
+
 import { Sparkles, ShieldCheck, Zap, Star, ArrowRight, Layers } from 'lucide-react';
 
 export default function App() {
@@ -306,6 +310,9 @@ export default function App() {
       default:
         if (ARCHIVE_TOOLS_CONFIG[id]) {
           return <ArchiveConverterTool config={ARCHIVE_TOOLS_CONFIG[id]} />;
+        }
+        if (DOCUMENT_TOOLS_CONFIG[id]) {
+          return <DocumentConverterTool config={DOCUMENT_TOOLS_CONFIG[id]} />;
         }
         return (
           <div className="p-8 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800">

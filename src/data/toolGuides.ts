@@ -1,4 +1,5 @@
 import { ARCHIVE_TOOL_GUIDES } from './archiveToolGuides';
+import { DOCUMENT_TOOL_GUIDES } from './documentToolGuides';
 
 export interface ToolGuideFAQ {
   question: string;
@@ -2871,4 +2872,7 @@ export const TOOL_GUIDES: Record<string, ToolGuideContent> = {
 
 // Merge all 25 Archive Converter & Extractor guides
 Object.assign(TOOL_GUIDES, ARCHIVE_TOOL_GUIDES);
+
+// Merge all 44 Document Converter guides
+Object.assign(TOOL_GUIDES, DOCUMENT_TOOL_GUIDES);
 

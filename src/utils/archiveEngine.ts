@@ -2,7 +2,8 @@ import * as fflate from 'fflate';
 import * as fzstd from 'fzstd';
 import JSZip from 'jszip';
 import * as seekBzip from 'seek-bzip';
-import * as lzma from 'lzma';
+// @ts-ignore
+import LZMA from './lzmaDecoder';
 
 export interface ArchiveEntry {
   name: string;
@@ -286,7 +287,7 @@ export function parseTarZst(buffer: Uint8Array): ArchiveEntry[] {
 // -------------------------------------------------------------
 export async function decompressLzma(buffer: Uint8Array, originalName?: string): Promise<{ uncompressed: Uint8Array; fileName: string }> {
   return new Promise((resolve, reject) => {
-    lzma.decompress(buffer, (result) => {
+    LZMA.decompress(buffer, (result: any) => {
       if (!result) {
         reject(new Error('LZMA decompression failed or format invalid.'));
         return;

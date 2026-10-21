@@ -16,3 +16,20 @@ declare module 'lzma' {
     onProgress?: (percent: number) => void
   ): void;
 }
+
+declare module 'lzma/src/lzma_worker.js' {
+  export const LZMA_WORKER: {
+    compress(
+      data: string | Uint8Array,
+      mode: number,
+      onFinish: (result: number[]) => void,
+      onProgress?: (percent: number) => void
+    ): void;
+    decompress(
+      byte_array: number[] | Uint8Array,
+      onFinish: (result: string | number[]) => void,
+      onProgress?: (percent: number) => void
+    ): void;
+  };
+}
+

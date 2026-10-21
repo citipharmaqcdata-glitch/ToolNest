@@ -71,6 +71,14 @@ export default function Header({
               Archive Converters
             </button>
             <button
+              onClick={() => handleNavClick('documents')}
+              className={`hover:text-teal-600 dark:hover:text-teal-400 transition-colors whitespace-nowrap shrink-0 ${
+                currentCategory === 'documents' && !activeToolId ? 'text-teal-600 dark:text-teal-400 font-semibold' : ''
+              }`}
+            >
+              Document Converters
+            </button>
+            <button
               onClick={() => handleNavClick('conversions')}
               className={`hover:text-teal-600 dark:hover:text-teal-400 transition-colors whitespace-nowrap shrink-0 ${
                 currentCategory === 'conversions' && !activeToolId ? 'text-teal-600 dark:text-teal-400 font-semibold' : ''
@@ -176,6 +184,12 @@ export default function Header({
               className="py-2 px-3 text-left rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-teal-600 dark:text-teal-400"
             >
               Archive Converters (ZIP, 7Z, TAR...)
+            </button>
+            <button
+              onClick={() => handleNavClick('documents')}
+              className="py-2 px-3 text-left rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 font-semibold text-teal-600 dark:text-teal-400"
+            >
+              Document Converters (Word, Excel, EPUB...)
             </button>
             <button
               onClick={() => handleNavClick('chemistry')}

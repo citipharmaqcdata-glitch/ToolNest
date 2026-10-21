@@ -1,5 +1,6 @@
 export type CategoryId =
   | 'all'
+  | 'documents'
   | 'archive'
   | 'conversions'
   | 'chemistry'

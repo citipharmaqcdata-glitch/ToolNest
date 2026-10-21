@@ -2,6 +2,12 @@ import { Category, CategoryId, SubCategoryOption } from '../types';
 
 export const CATEGORIES: Category[] = [
   {
+    id: 'documents',
+    name: 'Document Converters',
+    description: 'Word, Excel, eBooks, Email, Web, and 40+ document and file conversion tools',
+    icon: 'FileText'
+  },
+  {
     id: 'archive',
     name: 'Archive & Compression',
     description: 'ZIP, 7Z, RAR, TAR, GZ, ISO, DEB, RPM, and 25+ archive extraction & conversion tools',
@@ -66,6 +72,10 @@ export const CATEGORIES: Category[] = [
 export const SUBCATEGORIES: Record<CategoryId, SubCategoryOption[]> = {
   all: [
     { id: 'all', name: 'All Subcategories' },
+    { id: 'office-docs', name: 'Word & Office Documents' },
+    { id: 'spreadsheets', name: 'Spreadsheets & Data Tables' },
+    { id: 'ebooks', name: 'eBooks & Digital Readers' },
+    { id: 'email-web', name: 'Email, HTML & Web Data' },
     { id: 'archive-extract', name: 'Archive Converters & Extractors' },
     { id: 'conversions-units', name: 'Universal Unit Conversions' },
     { id: 'solutions', name: 'Solutions & Concentrations' },
@@ -76,6 +86,14 @@ export const SUBCATEGORIES: Record<CategoryId, SubCategoryOption[]> = {
     { id: 'text-writing', name: 'Writing & Text Formats' },
     { id: 'media-images', name: 'Image & Media Processing' },
     { id: 'security-data', name: 'Security, Code & JSON' }
+  ],
+  documents: [
+    { id: 'all', name: 'All Document Tools' },
+    { id: 'office-docs', name: 'Word & Office (DOCX, DOC, DOCM, DOT, ODT, RTF)' },
+    { id: 'spreadsheets', name: 'Spreadsheets & Data (XLSX, XLS, XLSB, ODS, CSV)' },
+    { id: 'ebooks', name: 'eBooks (EPUB, MOBI, FB2, LIT, PDB)' },
+    { id: 'email-web', name: 'Email & Web (EML, MSG, HTML, MHTML, XML, MD)' },
+    { id: 'fixed-media', name: 'Fixed Layout & Graphics (XPS, OXPS, PRN, GIF, SWF)' }
   ],
   archive: [
     { id: 'all', name: 'All Archive Tools' },

@@ -1,4 +1,5 @@
 import { ToolItem } from '../types';
+import { DOCUMENT_TOOLS } from './documentToolsList';
 
 export const TOOLS: ToolItem[] = [
   // --- PHASE 1 CORE 12 TOOLS (Available) ---
@@ -400,7 +401,7 @@ export const TOOLS: ToolItem[] = [
     shortDescription: 'All-in-one PDF conversion center: Convert JPG, Word, Excel, HTML to PDF, or convert PDF to JPG, Word, Excel, and archival PDF/A.',
     category: 'text',
     categoryName: 'Text & Documents',
-    secondaryCategories: ['image'],
+    secondaryCategories: ['image', 'documents'],
     subCategory: 'pdf-converters',
     subCategories: ['pdf-converters', 'pdf-tools'],
     iconName: 'ArrowRightLeft',
@@ -510,7 +511,7 @@ export const TOOLS: ToolItem[] = [
     shortDescription: 'Standardize PDF files into ISO 19005-1 compliant PDF/A format with embedded archival metadata for long-term preservation.',
     category: 'text',
     categoryName: 'Text & Documents',
-    secondaryCategories: ['laboratory'],
+    secondaryCategories: ['laboratory', 'documents'],
     subCategory: 'pdf-converters',
     subCategories: ['pdf-converters', 'pdf-tools'],
     iconName: 'Archive',
@@ -966,6 +967,9 @@ export const TOOLS: ToolItem[] = [
     isPopular: false,
     status: 'available'
   },
+
+  // --- DOCUMENT CONVERTERS SUITE (44 Complete Tools) ---
+  ...DOCUMENT_TOOLS,
 
   // --- PHASE 6 ROADMAP TOOLS (Planned Future Releases) ---
   {
