@@ -203,8 +203,6 @@ export default function App() {
     return true;
   });
 
-  const popularTools = TOOLS.filter(t => t.isPopular && t.status === 'available');
-
   // Active tool lookup
   const currentTool = TOOLS.find(t => t.id === activeToolId);
   const relatedTools = currentTool
@@ -401,33 +399,6 @@ export default function App() {
               </div>
             </section>
 
-            {/* Popular & Essential Tools Showcase (if not searching) */}
-            {!searchQuery && !showOnlyFavorites && selectedCategory === 'all' && selectedSubCategory === 'all' && (
-              <section className="space-y-4">
-                <div className="flex items-center justify-between">
-                  <div>
-                    <h2 className="font-heading font-bold text-lg sm:text-xl text-slate-900 dark:text-white">
-                      Popular & Essential Tools
-                    </h2>
-                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
-                      Most frequently used laboratory, math, and developer calculators
-                    </p>
-                  </div>
-                </div>
-
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
-                  {popularTools.slice(0, 6).map((tool) => (
-                    <ToolCard
-                      key={tool.id}
-                      tool={tool}
-                      onOpen={handleOpenTool}
-                      isFavorite={favorites.includes(tool.id)}
-                      onToggleFavorite={handleToggleFavorite}
-                    />
-                  ))}
-                </div>
-              </section>
-            )}
 
             {/* Main Catalog Grid */}
             <section className="space-y-4">
@@ -450,7 +421,7 @@ export default function App() {
               </div>
 
               {filteredTools.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
                   {filteredTools.map((tool) => (
                     <ToolCard
                       key={tool.id}
