@@ -79,7 +79,11 @@ import { ARCHIVE_TOOLS_CONFIG } from './data/archiveToolsData';
 import DocumentConverterTool from './tools/documents/DocumentConverterTool';
 import { DOCUMENT_TOOLS_CONFIG } from './data/documentToolsData';
 
-import { Sparkles, ShieldCheck, Zap, Star, ArrowRight, Layers } from 'lucide-react';
+import CategoryCard from './components/CategoryCard';
+import SubCategoryCard from './components/SubCategoryCard';
+import { CATEGORIES, SUBCATEGORIES } from './data/categories';
+
+import { Sparkles, ShieldCheck, Zap, Star, ArrowRight, Layers, ArrowLeft, ChevronRight, Home } from 'lucide-react';
 
 export default function App() {
   const [activeToolId, setActiveToolId] = useState<string | null>(null);
@@ -202,6 +206,18 @@ export default function App() {
     }
     return true;
   });
+
+  // Hierarchical category & subcategory browsing helpers
+  const currentCategoryObj = CATEGORIES.find((c) => c.id === selectedCategory);
+  const currentSubCategoriesList =
+    selectedCategory !== 'all'
+      ? (SUBCATEGORIES[selectedCategory] || []).filter((s) => s.id !== 'all')
+      : [];
+  const currentSubCategoryObj = (SUBCATEGORIES[selectedCategory] || SUBCATEGORIES.all).find(
+    (s) => s.id === selectedSubCategory
+  );
+  const isSearchActive = !!searchQuery.trim();
+  const isFavoritesActive = showOnlyFavorites;
 
   // Active tool lookup
   const currentTool = TOOLS.find(t => t.id === activeToolId);
@@ -400,60 +416,273 @@ export default function App() {
             </section>
 
 
-            {/* Main Catalog Grid */}
-            <section className="space-y-4">
-              <div className="flex items-center justify-between pb-1 border-b border-slate-200/60 dark:border-slate-800">
-                <div className="flex items-center gap-2">
-                  <h2 className="font-heading font-bold text-lg sm:text-xl text-slate-900 dark:text-white">
-                    {showOnlyFavorites
-                      ? `Saved Favorite Tools (${filteredTools.length})`
-                      : searchQuery
-                      ? `Search Results for "${searchQuery}" (${filteredTools.length})`
-                      : selectedCategory === 'all'
-                      ? 'Browse Full Tools Catalog'
-                      : `${selectedCategory.toUpperCase()} Tools (${filteredTools.length})`}
-                  </h2>
-                </div>
+            {/* HIERARCHICAL BROWSING VIEWS */}
 
-                <div className="text-xs text-slate-400 font-mono">
-                  {filteredTools.length} tools
-                </div>
-              </div>
+            {/* View A: Search Results or Favorites Active */}
+            {(isSearchActive || isFavoritesActive) && (
+              <section className="space-y-4">
+                <div className="flex items-center justify-between pb-1 border-b border-slate-200/60 dark:border-slate-800">
+                  <div className="flex items-center gap-2">
+                    <h2 className="font-heading font-bold text-lg sm:text-xl text-slate-900 dark:text-white">
+                      {isFavoritesActive
+                        ? `Saved Favorite Tools (${filteredTools.length})`
+                        : `Search Results for "${searchQuery}" (${filteredTools.length})`}
+                    </h2>
+                  </div>
 
-              {filteredTools.length > 0 ? (
-                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
-                  {filteredTools.map((tool) => (
-                    <ToolCard
-                      key={tool.id}
-                      tool={tool}
-                      onOpen={handleOpenTool}
-                      isFavorite={favorites.includes(tool.id)}
-                      onToggleFavorite={handleToggleFavorite}
-                    />
-                  ))}
-                </div>
-              ) : (
-                <div className="p-12 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-3">
-                  <h3 className="font-heading font-semibold text-slate-800 dark:text-white text-base">
-                    No tools match your criteria
-                  </h3>
-                  <p className="text-xs text-slate-500 max-w-sm mx-auto">
-                    Try searching for another keyword or clear your category and favorite filters.
-                  </p>
                   <button
                     onClick={() => {
                       setSearchQuery('');
+                      setShowOnlyFavorites(false);
                       setSelectedCategory('all');
                       setSelectedSubCategory('all');
-                      setShowOnlyFavorites(false);
                     }}
-                    className="py-1.5 px-3.5 bg-teal-600 text-white text-xs font-medium rounded-lg shadow-xs hover:bg-teal-700 transition-colors"
+                    className="text-xs text-teal-600 dark:text-teal-400 hover:underline"
                   >
-                    Reset All Filters
+                    Clear Filter
                   </button>
                 </div>
-              )}
-            </section>
+
+                {filteredTools.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    {filteredTools.map((tool) => (
+                      <ToolCard
+                        key={tool.id}
+                        tool={tool}
+                        onOpen={handleOpenTool}
+                        isFavorite={favorites.includes(tool.id)}
+                        onToggleFavorite={handleToggleFavorite}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="p-12 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-3">
+                    <h3 className="font-heading font-semibold text-slate-800 dark:text-white text-base">
+                      No tools match your criteria
+                    </h3>
+                    <p className="text-xs text-slate-500 max-w-sm mx-auto">
+                      Try searching for another keyword or clear your category and favorite filters.
+                    </p>
+                    <button
+                      onClick={() => {
+                        setSearchQuery('');
+                        setSelectedCategory('all');
+                        setSelectedSubCategory('all');
+                        setShowOnlyFavorites(false);
+                      }}
+                      className="py-1.5 px-3.5 bg-teal-600 text-white text-xs font-medium rounded-lg shadow-xs hover:bg-teal-700 transition-colors"
+                    >
+                      Reset All Filters
+                    </button>
+                  </div>
+                )}
+              </section>
+            )}
+
+            {/* View B: Top-Level Main Categories (Homepage Root) */}
+            {!isSearchActive && !isFavoritesActive && selectedCategory === 'all' && selectedSubCategory === 'all' && (
+              <section className="space-y-4">
+                <div className="flex items-center justify-between pb-1 border-b border-slate-200/60 dark:border-slate-800">
+                  <div>
+                    <h2 className="font-heading font-bold text-lg sm:text-xl text-slate-900 dark:text-white">
+                      Tool Categories
+                    </h2>
+                    <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                      Select a category to explore specialized analytical, conversion, and daily utilities
+                    </p>
+                  </div>
+
+                  <div className="text-xs text-slate-400 font-mono">
+                    {CATEGORIES.length} categories
+                  </div>
+                </div>
+
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                  {CATEGORIES.map((cat) => {
+                    const catToolCount = TOOLS.filter(
+                      (t) =>
+                        t.status === 'available' &&
+                        (t.category === cat.id || t.secondaryCategories?.includes(cat.id))
+                    ).length;
+                    const subCount = (SUBCATEGORIES[cat.id] || []).filter((s) => s.id !== 'all').length;
+                    return (
+                      <CategoryCard
+                        key={cat.id}
+                        category={cat}
+                        toolCount={catToolCount}
+                        subCategoryCount={subCount}
+                        onSelect={(catId) => {
+                          setSelectedCategory(catId);
+                          setSelectedSubCategory('all');
+                        }}
+                      />
+                    );
+                  })}
+                </div>
+              </section>
+            )}
+
+            {/* View C: Category View showing only Subcategories */}
+            {!isSearchActive && !isFavoritesActive && selectedCategory !== 'all' && selectedSubCategory === 'all' && (
+              <section className="space-y-4">
+                {/* Breadcrumbs & Back Navigation */}
+                <div className="space-y-2">
+                  <nav className="flex items-center gap-1.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400 flex-wrap">
+                    <button
+                      onClick={() => {
+                        setSelectedCategory('all');
+                        setSelectedSubCategory('all');
+                      }}
+                      className="hover:text-teal-600 dark:hover:text-teal-400 font-medium flex items-center gap-1 transition-colors"
+                    >
+                      <Home className="w-3.5 h-3.5" />
+                      <span>Categories</span>
+                    </button>
+                    <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+                    <span className="font-semibold text-slate-900 dark:text-white">
+                      {currentCategoryObj?.name}
+                    </span>
+                  </nav>
+
+                  <div className="flex items-center justify-between pb-1 border-b border-slate-200/60 dark:border-slate-800">
+                    <div>
+                      <button
+                        onClick={() => {
+                          setSelectedCategory('all');
+                          setSelectedSubCategory('all');
+                        }}
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 transition-colors mb-1"
+                      >
+                        <ArrowLeft className="w-3.5 h-3.5" />
+                        <span>Back to All Categories</span>
+                      </button>
+                      <h2 className="font-heading font-bold text-lg sm:text-xl text-slate-900 dark:text-white">
+                        {currentCategoryObj?.name} Subcategories
+                      </h2>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                        {currentCategoryObj?.description}
+                      </p>
+                    </div>
+
+                    <div className="text-xs text-slate-400 font-mono">
+                      {currentSubCategoriesList.length} subcategories
+                    </div>
+                  </div>
+                </div>
+
+                {currentSubCategoriesList.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    {currentSubCategoriesList.map((sub) => {
+                      const subToolCount = TOOLS.filter(
+                        (t) =>
+                          t.status === 'available' &&
+                          (t.category === selectedCategory ||
+                            t.secondaryCategories?.includes(selectedCategory)) &&
+                          (t.subCategory === sub.id || t.subCategories?.includes(sub.id))
+                      ).length;
+                      return (
+                        <SubCategoryCard
+                          key={sub.id}
+                          subCategory={sub}
+                          categoryName={currentCategoryObj?.name || 'Category'}
+                          toolCount={subToolCount}
+                          onSelect={(subId) => setSelectedSubCategory(subId)}
+                        />
+                      );
+                    })}
+                  </div>
+                ) : (
+                  <div className="p-8 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800">
+                    <p className="text-sm text-slate-600 dark:text-slate-400">
+                      No subcategories configured for this category.
+                    </p>
+                  </div>
+                )}
+              </section>
+            )}
+
+            {/* View D: Subcategory View showing only Tools */}
+            {!isSearchActive && !isFavoritesActive && selectedCategory !== 'all' && selectedSubCategory !== 'all' && (
+              <section className="space-y-4">
+                {/* Breadcrumbs & Back Navigation */}
+                <div className="space-y-2">
+                  <nav className="flex items-center gap-1.5 text-xs sm:text-sm text-slate-500 dark:text-slate-400 flex-wrap">
+                    <button
+                      onClick={() => {
+                        setSelectedCategory('all');
+                        setSelectedSubCategory('all');
+                      }}
+                      className="hover:text-teal-600 dark:hover:text-teal-400 font-medium flex items-center gap-1 transition-colors"
+                    >
+                      <Home className="w-3.5 h-3.5" />
+                      <span>Categories</span>
+                    </button>
+                    <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+                    <button
+                      onClick={() => setSelectedSubCategory('all')}
+                      className="hover:text-teal-600 dark:hover:text-teal-400 font-medium transition-colors"
+                    >
+                      {currentCategoryObj?.name}
+                    </button>
+                    <ChevronRight className="w-3.5 h-3.5 text-slate-400" />
+                    <span className="font-semibold text-slate-900 dark:text-white">
+                      {currentSubCategoryObj?.name}
+                    </span>
+                  </nav>
+
+                  <div className="flex items-center justify-between pb-1 border-b border-slate-200/60 dark:border-slate-800">
+                    <div>
+                      <button
+                        onClick={() => setSelectedSubCategory('all')}
+                        className="inline-flex items-center gap-1 text-xs font-semibold text-teal-600 dark:text-teal-400 hover:text-teal-700 dark:hover:text-teal-300 transition-colors mb-1"
+                      >
+                        <ArrowLeft className="w-3.5 h-3.5" />
+                        <span>Back to {currentCategoryObj?.name} Subcategories</span>
+                      </button>
+                      <h2 className="font-heading font-bold text-lg sm:text-xl text-slate-900 dark:text-white">
+                        {currentSubCategoryObj?.name}
+                      </h2>
+                      <p className="text-xs text-slate-500 dark:text-slate-400 mt-0.5">
+                        Tools and utilities in {currentCategoryObj?.name}
+                      </p>
+                    </div>
+
+                    <div className="text-xs text-slate-400 font-mono">
+                      {filteredTools.length} {filteredTools.length === 1 ? 'tool' : 'tools'}
+                    </div>
+                  </div>
+                </div>
+
+                {filteredTools.length > 0 ? (
+                  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                    {filteredTools.map((tool) => (
+                      <ToolCard
+                        key={tool.id}
+                        tool={tool}
+                        onOpen={handleOpenTool}
+                        isFavorite={favorites.includes(tool.id)}
+                        onToggleFavorite={handleToggleFavorite}
+                      />
+                    ))}
+                  </div>
+                ) : (
+                  <div className="p-12 text-center bg-white dark:bg-slate-900 rounded-3xl border border-slate-200 dark:border-slate-800 space-y-3">
+                    <h3 className="font-heading font-semibold text-slate-800 dark:text-white text-base">
+                      No tools currently in this subcategory
+                    </h3>
+                    <p className="text-xs text-slate-500 max-w-sm mx-auto">
+                      Check back soon or browse other subcategories in {currentCategoryObj?.name}.
+                    </p>
+                    <button
+                      onClick={() => setSelectedSubCategory('all')}
+                      className="py-1.5 px-3.5 bg-teal-600 text-white text-xs font-medium rounded-lg shadow-xs hover:bg-teal-700 transition-colors"
+                    >
+                      Return to {currentCategoryObj?.name} Subcategories
+                    </button>
+                  </div>
+                )}
+              </section>
+            )}
 
             {/* Trust & Transparency Feature Strip */}
             <section className="bg-white dark:bg-slate-900 rounded-3xl p-6 sm:p-8 border border-slate-200 dark:border-slate-800 shadow-xs">
