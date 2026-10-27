@@ -11,7 +11,38 @@ export default defineConfig(() => {
     },
     resolve: {
       alias: {
-        '@': path.resolve(__dirname, '.'),
+        '@': path.resolve('.'),
+      },
+    },
+    build: {
+      target: 'es2020',
+      chunkSizeWarningLimit: 1500,
+      rollupOptions: {
+        output: {
+          manualChunks(id) {
+            if (id.includes('node_modules/react/') || id.includes('node_modules/react-dom/')) {
+              return 'vendor-react';
+            }
+            if (id.includes('node_modules/lucide-react/')) {
+              return 'vendor-icons';
+            }
+            if (id.includes('node_modules/pdf-lib/')) {
+              return 'vendor-pdflib';
+            }
+            if (id.includes('node_modules/pdfjs-dist/')) {
+              return 'vendor-pdfjs';
+            }
+            if (id.includes('node_modules/xlsx/') || id.includes('node_modules/pptxgenjs/')) {
+              return 'vendor-office';
+            }
+            if (id.includes('node_modules/jszip/') || id.includes('node_modules/fflate/')) {
+              return 'vendor-archive';
+            }
+            if (id.includes('src/data/')) {
+              return 'app-tool-data';
+            }
+          },
+        },
       },
     },
     server: {

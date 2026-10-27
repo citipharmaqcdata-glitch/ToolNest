@@ -30,7 +30,7 @@ export interface DocumentToolConfig {
   shortDescription: string;
   primaryExtension: string;
   supportedExtensions: string[];
-  category: 'documents';
+  category: string;
   availableTargets: ConvertTarget[];
   defaultTarget: string;
   technicalDetails: {

@@ -71,6 +71,22 @@ import PdfRedactTool from './tools/pdf/PdfRedactTool';
 import PdfProtectTool from './tools/pdf/PdfProtectTool';
 import PdfCompareTool from './tools/pdf/PdfCompareTool';
 
+// New Extended PDF Tools
+import PdfRemovePagesTool from './tools/pdf/PdfRemovePagesTool';
+import PdfExtractPagesTool from './tools/pdf/PdfExtractPagesTool';
+import PdfOrganizeTool from './tools/pdf/PdfOrganizeTool';
+import PdfScanTool from './tools/pdf/PdfScanTool';
+import PdfCompressTool from './tools/pdf/PdfCompressTool';
+import PdfRepairTool from './tools/pdf/PdfRepairTool';
+import PdfOcrTool from './tools/pdf/PdfOcrTool';
+import PowerpointToPdfTool from './tools/pdf/PowerpointToPdfTool';
+import PdfEditTool from './tools/pdf/PdfEditTool';
+import PdfFormsTool from './tools/pdf/PdfFormsTool';
+import PdfSignTool from './tools/pdf/PdfSignTool';
+import PdfSummarizerTool from './tools/pdf/PdfSummarizerTool';
+import PdfTranslateTool from './tools/pdf/PdfTranslateTool';
+import PdfToMarkdownTool from './tools/pdf/PdfToMarkdownTool';
+
 // Archive & Compression Tools (25 Formats)
 import ArchiveConverterTool from './tools/archive/ArchiveConverterTool';
 import { ARCHIVE_TOOLS_CONFIG } from './data/archiveToolsData';
@@ -321,6 +337,34 @@ export default function App() {
         return <PdfProtectTool initialMode="unlock" />;
       case 'pdf-compare':
         return <PdfCompareTool />;
+      case 'powerpoint-to-pdf':
+        return <PowerpointToPdfTool />;
+      case 'pdf-remove-pages':
+        return <PdfRemovePagesTool />;
+      case 'pdf-extract-pages':
+        return <PdfExtractPagesTool />;
+      case 'pdf-organize':
+        return <PdfOrganizeTool />;
+      case 'pdf-scan':
+        return <PdfScanTool />;
+      case 'pdf-compress':
+        return <PdfCompressTool />;
+      case 'pdf-repair':
+        return <PdfRepairTool />;
+      case 'pdf-ocr':
+        return <PdfOcrTool />;
+      case 'pdf-edit':
+        return <PdfEditTool />;
+      case 'pdf-forms':
+        return <PdfFormsTool />;
+      case 'pdf-sign':
+        return <PdfSignTool />;
+      case 'pdf-summarizer':
+        return <PdfSummarizerTool />;
+      case 'pdf-translate':
+        return <PdfTranslateTool />;
+      case 'pdf-to-markdown':
+        return <PdfToMarkdownTool />;
       default:
         if (ARCHIVE_TOOLS_CONFIG[id]) {
           return <ArchiveConverterTool config={ARCHIVE_TOOLS_CONFIG[id]} />;

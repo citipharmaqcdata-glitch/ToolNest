@@ -92,15 +92,7 @@ export default function Header({
                 currentCategory === 'chemistry' && !activeToolId ? 'text-teal-600 dark:text-teal-400 font-semibold' : ''
               }`}
             >
-              Chemistry
-            </button>
-            <button
-              onClick={() => handleNavClick('laboratory')}
-              className={`hover:text-teal-600 dark:hover:text-teal-400 transition-colors whitespace-nowrap shrink-0 ${
-                currentCategory === 'laboratory' && !activeToolId ? 'text-teal-600 dark:text-teal-400 font-semibold' : ''
-              }`}
-            >
-              Laboratory & QC
+              Chemistry & Science
             </button>
             <button
               onClick={() => handleNavClick('math')}
@@ -109,6 +101,14 @@ export default function Header({
               }`}
             >
               Math
+            </button>
+            <button
+              onClick={() => handleNavClick('finance')}
+              className={`hover:text-teal-600 dark:hover:text-teal-400 transition-colors whitespace-nowrap shrink-0 ${
+                currentCategory === 'finance' && !activeToolId ? 'text-teal-600 dark:text-teal-400 font-semibold' : ''
+              }`}
+            >
+              Finance
             </button>
             <button
               onClick={() => handleNavClick('developer')}
@@ -195,19 +195,19 @@ export default function Header({
               onClick={() => handleNavClick('chemistry')}
               className="py-2 px-3 text-left rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
-              Chemistry
-            </button>
-            <button
-              onClick={() => handleNavClick('laboratory')}
-              className="py-2 px-3 text-left rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
-            >
-              Laboratory & QC
+              Chemistry & Science
             </button>
             <button
               onClick={() => handleNavClick('math')}
               className="py-2 px-3 text-left rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
             >
               Math Calculators
+            </button>
+            <button
+              onClick={() => handleNavClick('finance')}
+              className="py-2 px-3 text-left rounded-lg text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800"
+            >
+              Finance & Business
             </button>
             <button
               onClick={() => handleNavClick('image')}

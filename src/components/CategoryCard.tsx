@@ -12,7 +12,8 @@ import {
   Compass,
   ArrowRight,
   Folder,
-  Layers
+  Layers,
+  TrendingUp
 } from 'lucide-react';
 
 const ICON_MAP: Record<string, any> = {
@@ -25,7 +26,8 @@ const ICON_MAP: Record<string, any> = {
   Image,
   Code2,
   GraduationCap,
-  Compass
+  Compass,
+  TrendingUp
 };
 
 const CATEGORY_THEMES: Record<string, { bg: string; text: string; border: string; hoverBg: string }> = {
@@ -64,6 +66,12 @@ const CATEGORY_THEMES: Record<string, { bg: string; text: string; border: string
     text: 'text-blue-600 dark:text-blue-400',
     border: 'border-blue-100 dark:border-blue-900/40',
     hoverBg: 'group-hover:bg-blue-600 group-hover:text-white'
+  },
+  finance: {
+    bg: 'bg-emerald-50 dark:bg-emerald-950/40',
+    text: 'text-emerald-600 dark:text-emerald-400',
+    border: 'border-emerald-100 dark:border-emerald-900/40',
+    hoverBg: 'group-hover:bg-emerald-600 group-hover:text-white'
   },
   image: {
     bg: 'bg-purple-50 dark:bg-purple-950/40',

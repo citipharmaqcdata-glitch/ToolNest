@@ -22,20 +22,20 @@ export const CATEGORIES: Category[] = [
   {
     id: 'chemistry',
     name: 'Chemistry & Science',
-    description: 'Molarity, dilutions, stoichiometry, and solution preparation tools',
+    description: 'Molarity, dilutions, stoichiometry, analytical QC, chromatography, and assays',
     icon: 'FlaskConical'
-  },
-  {
-    id: 'laboratory',
-    name: 'Laboratory & QC',
-    description: 'Analytical quality control, %RSD, assays, and ppm/ppb converters',
-    icon: 'Microscope'
   },
   {
     id: 'math',
     name: 'Math & Calculators',
-    description: 'Percentages, discounts, ratios, interest, and everyday arithmetic',
+    description: 'Percentages, proportions, retail discounts, sales tax, and arithmetic calculations',
     icon: 'Calculator'
+  },
+  {
+    id: 'finance',
+    name: 'Finance & Business Calculators',
+    description: 'Compound interest, loan calculations, investments, and financial growth schedules',
+    icon: 'TrendingUp'
   },
   {
     id: 'image',
@@ -72,16 +72,38 @@ export const CATEGORIES: Category[] = [
 export const SUBCATEGORIES: Record<CategoryId, SubCategoryOption[]> = {
   all: [
     { id: 'all', name: 'All Subcategories' },
-    { id: 'office-docs', name: 'Word & Office Documents' },
-    { id: 'spreadsheets', name: 'Spreadsheets & Data Tables' },
-    { id: 'ebooks', name: 'eBooks & Digital Readers' },
-    { id: 'email-web', name: 'Email, HTML & Web Data' },
+    { id: 'office-docs', name: 'Word & Office' },
+    { id: 'spreadsheets', name: 'Spreadsheets & Data' },
+    { id: 'ebooks', name: 'eBooks' },
+    { id: 'email-files', name: 'Email Files' },
+    { id: 'web-markup', name: 'Web & Markup' },
+    { id: 'fixed-layout', name: 'Fixed-Layout Documents' },
+    { id: 'pdf-organization', name: 'PDF Organization' },
+    { id: 'pdf-optimization', name: 'PDF Optimization' },
+    { id: 'pdf-conversion', name: 'PDF Conversion' },
+    { id: 'pdf-editing', name: 'PDF Editing' },
+    { id: 'pdf-security', name: 'PDF Security' },
+    { id: 'pdf-intelligence', name: 'PDF Intelligence' },
+    { id: 'pdf-tools', name: 'PDF Tools' },
     { id: 'archive-extract', name: 'Archive Converters & Extractors' },
-    { id: 'conversions-units', name: 'Universal Unit Conversions' },
-    { id: 'solutions', name: 'Solutions & Concentrations' },
-    { id: 'qc-statistics', name: 'QC Testing & Statistics' },
+    { id: 'length', name: 'Length & Distance' },
+    { id: 'weight', name: 'Weight & Mass' },
+    { id: 'volume', name: 'Volume & Capacity' },
+    { id: 'temperature', name: 'Temperature' },
+    { id: 'area', name: 'Area & Land' },
+    { id: 'speed', name: 'Speed & Velocity' },
+    { id: 'pressure', name: 'Pressure' },
+    { id: 'digital', name: 'Digital Storage' },
+    { id: 'solutions', name: 'Solution Preparation' },
+    { id: 'stoichiometry', name: 'Stoichiometry & Dilutions' },
+    { id: 'equilibrium', name: 'Acid-Base & pH Equilibrium' },
+    { id: 'chemistry-conversions', name: 'Chemistry Unit Conversions' },
+    { id: 'qc-statistics', name: 'Analytical QC & %RSD Statistics' },
     { id: 'chromatography', name: 'HPLC & Chromatography' },
-    { id: 'percentages-pricing', name: 'Percentages & Pricing' },
+    { id: 'dissolution', name: 'Dissolution & Assays' },
+    { id: 'percentages-proportions', name: 'Percentages & Proportions' },
+    { id: 'discounts-taxes', name: 'Discounts, Sales & Taxes' },
+    { id: 'interest-loans', name: 'Interest & Loans' },
     { id: 'time-dates', name: 'Timers, Dates & Age' },
     { id: 'text-writing', name: 'Writing & Text Formats' },
     { id: 'media-images', name: 'Image & Media Processing' },
@@ -89,11 +111,18 @@ export const SUBCATEGORIES: Record<CategoryId, SubCategoryOption[]> = {
   ],
   documents: [
     { id: 'all', name: 'All Document Tools' },
-    { id: 'office-docs', name: 'Word & Office (DOCX, DOC, DOCM, DOT, ODT, RTF)' },
-    { id: 'spreadsheets', name: 'Spreadsheets & Data (XLSX, XLS, XLSB, ODS, CSV)' },
-    { id: 'ebooks', name: 'eBooks (EPUB, MOBI, FB2, LIT, PDB)' },
-    { id: 'email-web', name: 'Email & Web (EML, MSG, HTML, MHTML, XML, MD)' },
-    { id: 'fixed-media', name: 'Fixed Layout & Graphics (XPS, OXPS, PRN, GIF, SWF)' }
+    { id: 'office-docs', name: 'Word & Office' },
+    { id: 'spreadsheets', name: 'Spreadsheets & Data' },
+    { id: 'ebooks', name: 'eBooks' },
+    { id: 'email-files', name: 'Email Files' },
+    { id: 'web-markup', name: 'Web & Markup' },
+    { id: 'fixed-layout', name: 'Fixed-Layout Documents' },
+    { id: 'pdf-organization', name: 'PDF Organization' },
+    { id: 'pdf-optimization', name: 'PDF Optimization' },
+    { id: 'pdf-conversion', name: 'PDF Conversion' },
+    { id: 'pdf-editing', name: 'PDF Editing' },
+    { id: 'pdf-security', name: 'PDF Security' },
+    { id: 'pdf-intelligence', name: 'PDF Intelligence' }
   ],
   archive: [
     { id: 'all', name: 'All Archive Tools' },
@@ -105,21 +134,24 @@ export const SUBCATEGORIES: Record<CategoryId, SubCategoryOption[]> = {
   ],
   conversions: [
     { id: 'all', name: 'All Conversion Types' },
-    { id: 'length', name: 'Length & Distance (m, ft, km, mi, in)' },
-    { id: 'weight', name: 'Weight & Mass (kg, lb, g, oz, t)' },
-    { id: 'volume', name: 'Volume & Capacity (L, gal, mL, fl oz)' },
-    { id: 'temperature', name: 'Temperature (°C, °F, K, °R)' },
-    { id: 'area', name: 'Area & Land (m², ft², ac, ha)' },
-    { id: 'speed', name: 'Speed & Velocity (km/h, mph, m/s, knots)' },
-    { id: 'pressure', name: 'Pressure (bar, psi, kPa, atm, mmHg)' },
-    { id: 'digital', name: 'Digital Storage (MB, GB, TB, Bytes)' }
+    { id: 'length', name: 'Length & Distance' },
+    { id: 'weight', name: 'Weight & Mass' },
+    { id: 'volume', name: 'Volume & Capacity' },
+    { id: 'temperature', name: 'Temperature' },
+    { id: 'area', name: 'Area & Land' },
+    { id: 'speed', name: 'Speed & Velocity' },
+    { id: 'pressure', name: 'Pressure' },
+    { id: 'digital', name: 'Digital Storage' }
   ],
   chemistry: [
     { id: 'all', name: 'All Subcategories' },
-    { id: 'conversions-units', name: 'Metric & Volume Conversions' },
-    { id: 'solutions', name: 'Solutions Preparation' },
+    { id: 'solutions', name: 'Solution Preparation' },
     { id: 'stoichiometry', name: 'Stoichiometry & Dilutions' },
-    { id: 'equilibrium', name: 'Acid-Base & pH Equilibrium' }
+    { id: 'equilibrium', name: 'Acid-Base & pH Equilibrium' },
+    { id: 'chemistry-conversions', name: 'Chemistry Unit Conversions' },
+    { id: 'qc-statistics', name: 'Analytical QC & %RSD Statistics' },
+    { id: 'chromatography', name: 'HPLC & Chromatography' },
+    { id: 'dissolution', name: 'Dissolution & Assays' }
   ],
   laboratory: [
     { id: 'all', name: 'All Subcategories' },
@@ -129,10 +161,12 @@ export const SUBCATEGORIES: Record<CategoryId, SubCategoryOption[]> = {
   ],
   math: [
     { id: 'all', name: 'All Subcategories' },
-    { id: 'conversions-units', name: 'Unit Conversions & Measurement' },
-    { id: 'percentages-pricing', name: 'Percentages & Proportions' },
-    { id: 'discounts-taxes', name: 'Discounts, Sales & Taxes' },
-    { id: 'interest-finance', name: 'Interest & Finance' }
+    { id: 'percentages-proportions', name: 'Percentages & Proportions' },
+    { id: 'discounts-taxes', name: 'Discounts, Sales & Taxes' }
+  ],
+  finance: [
+    { id: 'all', name: 'All Subcategories' },
+    { id: 'interest-loans', name: 'Interest & Loans' }
   ],
   image: [
     { id: 'all', name: 'All Subcategories' },
@@ -146,10 +180,6 @@ export const SUBCATEGORIES: Record<CategoryId, SubCategoryOption[]> = {
   ],
   text: [
     { id: 'all', name: 'All Subcategories' },
-    { id: 'pdf-converters', name: 'PDF Converters (To & From PDF)' },
-    { id: 'pdf-editors', name: 'PDF Editors (Rotate, Watermark, Numbers, Crop)' },
-    { id: 'pdf-security', name: 'PDF Security (Protect, Unlock, Redact, Compare)' },
-    { id: 'pdf-tools', name: 'PDF Document Tools (Merge/Split)' },
     { id: 'text-analytics', name: 'Word Counts & Text Analytics' },
     { id: 'case-transform', name: 'Case Conversion & Formatting' }
   ],
@@ -161,7 +191,6 @@ export const SUBCATEGORIES: Record<CategoryId, SubCategoryOption[]> = {
   ],
   daily: [
     { id: 'all', name: 'All Subcategories' },
-    { id: 'conversions-units', name: 'Universal Unit Conversions' },
     { id: 'dining-bills', name: 'Dining, Tips & Split Bills' },
     { id: 'health-lifestyle', name: 'Health & Lifestyle (BMI)' }
   ]

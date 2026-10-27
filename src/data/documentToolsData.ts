@@ -330,7 +330,7 @@ export const DOCUMENT_TOOLS_CONFIG: Record<string, DocumentToolConfig> = {
     shortDescription: 'Convert animated or static GIF files (.gif) to PNG, JPEG, WebP, or PDF.',
     primaryExtension: '.gif',
     supportedExtensions: ['.gif'],
-    category: 'documents',
+    category: 'image',
     defaultTarget: 'pdf',
     availableTargets: [
       { id: 'pdf', name: 'PDF Document', extension: 'pdf', mimeType: 'application/pdf', description: 'Document containing the image' },
@@ -817,7 +817,7 @@ export const DOCUMENT_TOOLS_CONFIG: Record<string, DocumentToolConfig> = {
     shortDescription: 'Extract embedded vector graphics, frames, and metadata from Flash files (.swf) into PDF or text.',
     primaryExtension: '.swf',
     supportedExtensions: ['.swf'],
-    category: 'documents',
+    category: 'image',
     defaultTarget: 'pdf',
     availableTargets: [
       { id: 'pdf', name: 'PDF Report', extension: 'pdf', mimeType: 'application/pdf', description: 'Document with extracted media and metadata' },

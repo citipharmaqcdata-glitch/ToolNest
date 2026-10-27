@@ -6,6 +6,7 @@ export type CategoryId =
   | 'chemistry'
   | 'laboratory'
   | 'math'
+  | 'finance'
   | 'image'
   | 'developer'
   | 'text'

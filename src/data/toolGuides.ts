@@ -1,5 +1,6 @@
 import { ARCHIVE_TOOL_GUIDES } from './archiveToolGuides';
 import { DOCUMENT_TOOL_GUIDES } from './documentToolGuides';
+import { PDF_EXTENDED_TOOL_GUIDES } from './pdfToolGuides';
 
 export interface ToolGuideFAQ {
   question: string;
@@ -2875,4 +2876,7 @@ Object.assign(TOOL_GUIDES, ARCHIVE_TOOL_GUIDES);
 
 // Merge all 44 Document Converter guides
 Object.assign(TOOL_GUIDES, DOCUMENT_TOOL_GUIDES);
+
+// Merge all 14 Extended PDF Tool guides
+Object.assign(TOOL_GUIDES, PDF_EXTENDED_TOOL_GUIDES);
 

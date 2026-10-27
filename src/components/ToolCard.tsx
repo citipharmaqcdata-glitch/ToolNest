@@ -47,7 +47,18 @@ import {
   Package,
   Disc,
   Star,
-  HelpCircle
+  HelpCircle,
+  Trash2,
+  LayoutGrid,
+  Camera,
+  TrendingDown,
+  Wrench,
+  ScanText,
+  Edit3,
+  PenTool,
+  Sparkles,
+  Languages,
+  FileCode
 } from 'lucide-react';
 
 const ICON_MAP: Record<string, any> = {
@@ -96,11 +107,23 @@ const ICON_MAP: Record<string, any> = {
   Box,
   HardDrive,
   Package,
-  Disc
+  Disc,
+  Trash2,
+  LayoutGrid,
+  Camera,
+  TrendingDown,
+  Wrench,
+  ScanText,
+  Edit3,
+  PenTool,
+  Sparkles,
+  Languages,
+  FileCode
 };
 
 // Subtle domain-specific icon color themes for visual scannability
 const CATEGORY_STYLES: Record<string, string> = {
+  documents: 'bg-teal-50 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 border border-teal-100 dark:border-teal-900/40',
   archive: 'bg-teal-50 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 border border-teal-100 dark:border-teal-900/40',
   conversions: 'bg-teal-50 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 border border-teal-100 dark:border-teal-900/40',
   chemistry: 'bg-teal-50 dark:bg-teal-950/40 text-teal-600 dark:text-teal-400 border border-teal-100 dark:border-teal-900/40',
